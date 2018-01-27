@@ -5,7 +5,12 @@ import SvgIcon from '../utils/svg-icon'
 
 function getIp() {
   return new Promise(resolve => {
-    publicIp.v4().then(ip => resolve(ip)).catch(() => resolve('?.?.?.?'))
+    publicIp.v4({
+      https: true
+    }).then(ip => resolve(ip)).catch((err) =>{
+      console.log(err);
+      resolve('?.?.?.?')
+    });
   })
 }
 
